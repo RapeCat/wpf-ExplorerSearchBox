@@ -89,6 +89,13 @@ namespace ExplorerSearchBox {
             }
         }
 
+        private static UIElement GetFirstSelectedControl(Selector list)
+            => list.SelectedItem == null ? null :
+            list.ItemContainerGenerator.ContainerFromItem(list.SelectedItem) as UIElement;
+
+        private static UIElement GetDefaultSelectedControl(Selector list)
+            => list.ItemContainerGenerator.ContainerFromIndex(0) as UIElement;
+
         // Using of events.
         // https://stackoverflow.com/questions/13447940/how-to-create-user-define-new-event-for-user-control-in-wpf-one-small-example
         public event EventHandler SearchTextFocused;
@@ -119,8 +126,11 @@ namespace ExplorerSearchBox {
             //Keyboard.ClearFocus();
             if (DefaultFocusedElement != null) {
                 UIElement focusee = null;
-                if (DefaultFocusedElement is Selector list)
-                    focusee = list.ItemContainerGenerator.ContainerFromIndex(0) as UIElement;
+                if (DefaultFocusedElement is Selector list) {
+                    focusee = GetFirstSelectedControl(list);
+                    if (focusee == null)
+                        focusee = GetDefaultSelectedControl(list);
+                }
                 if (focusee == null) focusee = DefaultFocusedElement;
                 Keyboard.Focus(focusee);
             } else {
@@ -130,13 +140,11 @@ namespace ExplorerSearchBox {
             }
         }
 
-        public void OnTextBox_GotFocus(object sender, RoutedEventArgs e) {
-            SearchTextFocused?.Invoke(this, e);
-        }
+        public void OnTextBox_GotFocus(object sender, RoutedEventArgs e)
+            => SearchTextFocused?.Invoke(this, e);
 
-        public void OnTextBox_LostFocus(object sender, RoutedEventArgs e) {
-            SearchTextUnfocused?.Invoke(this, e);
-        }
+        public void OnTextBox_LostFocus(object sender, RoutedEventArgs e)
+            => SearchTextUnfocused?.Invoke(this, e);
 
         private void OnTextBox_KeyUp(object sender, KeyEventArgs e) {
             if (e.Key == Key.Escape)

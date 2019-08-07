@@ -24,6 +24,6 @@
                                      SearchRequested="SearchBox_SearchRequested"
                                      FocusManager.IsFocusScope="True"/>
         </DockPanel>
-        <ListBox Name="ListBox" ItemsSource="{Binding Items}" Grid.Row="1" SelectionChanged="ListBox_SelectionChanged"/>
+        <ListBox Name="ListBox" ItemsSource="{Binding Items}" Grid.Row="1"/>
     </Grid>
 </Window>
