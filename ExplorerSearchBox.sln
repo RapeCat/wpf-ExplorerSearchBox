@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplorerSearchBox", "ExplorerSearchBox\ExplorerSearchBox.csproj", "{0B8027C7-D031-4C3C-B8E0-33B9244E191B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExplorerSearchBoxDemo", "ExplorerSearchBoxDemo\ExplorerSearchBoxDemo.csproj", "{157575B2-C4E9-438D-874C-631AC81EEE40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB64AD0E-CB92-4838-97DD-A1CBA6C6D409}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B8027C7-D031-4C3C-B8E0-33B9244E191B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B8027C7-D031-4C3C-B8E0-33B9244E191B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B8027C7-D031-4C3C-B8E0-33B9244E191B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B8027C7-D031-4C3C-B8E0-33B9244E191B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{157575B2-C4E9-438D-874C-631AC81EEE40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{157575B2-C4E9-438D-874C-631AC81EEE40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{157575B2-C4E9-438D-874C-631AC81EEE40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{157575B2-C4E9-438D-874C-631AC81EEE40}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB3B0607-646B-4275-BCC8-280FBB55153A}
+	EndGlobalSection
+EndGlobal
