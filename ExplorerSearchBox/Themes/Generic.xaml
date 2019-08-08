@@ -15,12 +15,33 @@
                             <!--
     Text centering horizontally.
     https://stackoverflow.com/questions/3485727/textbox-text-centering
+                            
+    Visual brush in text box is convenient but it is static and therefore
+    does not support binding. Using grid instead for overlayed controls:
+    https://stackoverflow.com/questions/5450985/how-to-make-overlay-control-above-all-other-controls
     -->
-                            <TextBox BorderThickness="0" Width="220" Height="28" Name="PART_TextBox"
-                            VerticalContentAlignment="Center">
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                                        <!--
+                            <Grid Margin="12,0,0,0">
+                                <Label Grid.Row="0" Grid.Column="0" Foreground="LightGray" 
+                                       Content="{TemplateBinding HintText}" HorizontalAlignment="Left">
+                                    <Label.Style>
+                                        <Style TargetType="Label">
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Text, ElementName=PART_TextBox}" Value="">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsKeyboardFocused, ElementName=PART_TextBox}" Value="True">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Label.Style>
+                                </Label>
+                                <TextBox BorderThickness="0" Width="220" Height="28" Name="PART_TextBox"
+                            VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="0" Background="Transparent">
+                                    <!--TextBox.Style>
+                                        <Style TargetType="TextBox"-->
+                                    <!--
     When shall the hint be shown?
         Empty && !focused.
     How would this be achieved whith one condition per check?
@@ -29,25 +50,26 @@
         3) Hide hint again if focused, as trigger 2.
     https://stackoverflow.com/questions/7425618/how-can-i-add-a-hint-text-to-wpf-textbox
     -->
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Style.Resources>
-                                            <VisualBrush x:Key="HintBrush" AlignmentX="Left" AlignmentY="Center"  Stretch="None">
-                                                <VisualBrush.Visual>
-                                                    <Label Content="Search" Foreground="LightGray" Margin="12,0,0,0" />
-                                                </VisualBrush.Visual>
-                                            </VisualBrush>
-                                        </Style.Resources>
-                                        <Style.Triggers>
-                                            <Trigger Property="Text" Value="">
-                                                <Setter Property="Background" Value="{StaticResource HintBrush}" />
-                                            </Trigger>
-                                            <Trigger Property="IsKeyboardFocused" Value="True">
-                                                <Setter Property="Background" Value="Transparent" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
+                                    <!--Setter Property="Background" Value="Transparent"/>
+                                            <Style.Resources>
+                                                <VisualBrush x:Key="HintBrush" AlignmentX="Left" AlignmentY="Center"  Stretch="None">
+                                                    <VisualBrush.Visual>
+                                                        <Label Foreground="LightGray" Content="233"/>
+                                                    </VisualBrush.Visual>
+                                                </VisualBrush>
+                                            </Style.Resources>
+                                            <Style.Triggers>
+                                                <Trigger Property="Text" Value="">
+                                                    <Setter Property="Background" Value="{StaticResource HintBrush}" />
+                                                </Trigger>
+                                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                                    <Setter Property="Background" Value="Transparent" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style-->
+                                </TextBox>
+                            </Grid>
                             <Button Foreground="LightGray" Width="28" Height="28" Name="PART_SearchIcon"
                                     Focusable="False" Content="🔍"
                                     Command="{x:Static local:ExplorerSearchBox.ActivateSearchCommand}">

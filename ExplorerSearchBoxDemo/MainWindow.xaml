@@ -22,7 +22,8 @@
                                      SearchTextFocused="SearchBox_SearchTextFocused"
                                      SearchTextUnfocused="SearchBox_SearchTextUnfocused"
                                      SearchRequested="SearchBox_SearchRequested"
-                                     FocusManager.IsFocusScope="True"/>
+                                     FocusManager.IsFocusScope="True"
+                                     HintText="Search"/>
         </DockPanel>
         <ListBox Name="ListBox" ItemsSource="{Binding Items}" Grid.Row="1"/>
     </Grid>
